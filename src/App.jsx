@@ -1,14 +1,18 @@
 import "./App.css";
-import Card from "./components/Card";
+import CardGrid from "./components/CardGrid";
 import Placeholder from "./assets/placeholder.png";
 
 function App() {
+  const cards = [
+    { id: 1, name: "One", imageUrl: Placeholder },
+    { id: 2, name: "Two", imageUrl: Placeholder },
+    { id: 3, name: "Three", imageUrl: Placeholder },
+  ];
+
   return (
     <div className="app">
       <h1>Memory Game</h1>
-      <div className="card-grid">
-        <Card name="One" imageUrl={Placeholder} onClick={() => console.log("Card Clicked")}/>
-      </div>
+      <CardGrid cards={cards} />
     </div>
   );
 }

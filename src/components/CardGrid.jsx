@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Card from "./Card";
+import "../styles/CardGrid.css";
 
 export default function CardGrid({ cards }) {
   return (
