@@ -24,6 +24,5 @@ describe("Card", () => {
     const nameElement = getByText(mockName);
 
     expect(nameElement).toBeInTheDocument();
-    screen.debug();
   });
 });

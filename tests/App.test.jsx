@@ -6,6 +6,5 @@ describe("App", () => {
   it("renders Header", () => {
     render(<App/>);
     expect(screen.getByText("Memory Game")).toBeInTheDocument();
-    screen.debug();
   });
 });
