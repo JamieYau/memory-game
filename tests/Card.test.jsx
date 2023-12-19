@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import PlaceholderImg from "../src/assets/placeholder.png";
 import Card from "../src/components/Card";
 
@@ -24,6 +24,5 @@ describe("Card", () => {
     const nameElement = getByText(mockName);
 
     expect(nameElement).toBeInTheDocument();
-    screen.debug();
   });
 });
