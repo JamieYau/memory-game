@@ -7,6 +7,9 @@ function App() {
     { id: 1, name: "One", imageUrl: Placeholder },
     { id: 2, name: "Two", imageUrl: Placeholder },
     { id: 3, name: "Three", imageUrl: Placeholder },
+    { id: 4, name: "Four", imageUrl: Placeholder },
+    { id: 5, name: "Five", imageUrl: Placeholder },
+    { id: 6, name: "Six", imageUrl: Placeholder },
   ];
 
   return (
