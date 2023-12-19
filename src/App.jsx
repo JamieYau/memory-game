@@ -18,8 +18,13 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Memory Game</h1>
-      <CardGrid cards={cards} onCardClick={handleCardClick}/>
+      <header>
+        <h1>Memory Game</h1>
+      </header>
+      <main>
+        <p>Match cards to win</p>
+        <CardGrid cards={cards} onCardClick={handleCardClick} />
+      </main>
     </div>
   );
 }
