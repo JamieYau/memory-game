@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "../styles/Card.css";
 
 export default function Card({ name, imageUrl, onClick }) {
     return (
