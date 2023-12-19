@@ -10,7 +10,10 @@ describe("CardGrid", () => {
       { id: 2, name: "Two", imageUrl: PlaceholderImg },
       { id: 3, name: "Three", imageUrl: PlaceholderImg },
     ];
-    const { getByAltText } = render(<CardGrid cards={mockCards} />);
+
+    const { getByAltText } = render(
+      <CardGrid cards={mockCards} onCardClick={() => {}} />
+    );
 
     const cardOne = getByAltText("One");
     const cardTwo = getByAltText("Two");

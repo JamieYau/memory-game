@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 import "../styles/CardGrid.css";
 
-export default function CardGrid({ cards }) {
+export default function CardGrid({ cards, onCardClick }) {
   return (
     <div className="card-grid">
       {cards.map((card) => (
@@ -10,7 +10,7 @@ export default function CardGrid({ cards }) {
           key={card.id}
           name={card.name}
           imageUrl={card.imageUrl}
-          onClick={() => console.log(`Card ${card.name} Clicked`)}
+          onClick={() => onCardClick(card)}
         />
       ))}
     </div>
@@ -19,4 +19,5 @@ export default function CardGrid({ cards }) {
 
 CardGrid.propTypes = {
   cards: PropTypes.array.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };

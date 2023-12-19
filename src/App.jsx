@@ -12,10 +12,14 @@ function App() {
     { id: 6, name: "Six", imageUrl: Placeholder },
   ];
 
+  const handleCardClick = (card) => {
+    console.log(card);
+  };
+
   return (
     <div className="app">
       <h1>Memory Game</h1>
-      <CardGrid cards={cards} />
+      <CardGrid cards={cards} onCardClick={handleCardClick}/>
     </div>
   );
 }
