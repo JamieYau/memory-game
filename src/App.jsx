@@ -10,7 +10,9 @@ function App() {
     const { data } = await gf.search("NBA", { limit: 6 });
     return data.map((gif) => ({
       id: gif.id,
-      name: gif.title,
+      name: gif.title
+        .split(" GIF")[0]
+        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
       imageUrl: gif.images.fixed_height.url,
     }));
   }
@@ -23,7 +25,6 @@ function App() {
 
   const handleCardClick = (card) => {
     console.log(card);
-    console.log(import.meta.env.VITE_GIPHY_API_KEY);
   };
 
   return (
