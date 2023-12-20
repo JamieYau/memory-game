@@ -4,22 +4,22 @@ import { GiphyFetch } from "@giphy/js-fetch-api";
 import { useState, useEffect } from "react";
 
 function App() {
-  const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
   // replace the cards array with function that fetches cards from Giphy API
-  async function fetchNBAGifs() {
-    const { data } = await gf.search("NBA", { limit: 6 });
-    return data.map((gif) => ({
-      id: gif.id,
-      name: gif.title
-        .split(" GIF")[0]
-        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
-      imageUrl: gif.images.fixed_height.url,
-    }));
-  }
-
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
+    async function fetchNBAGifs() {
+      const { data } = await gf.search("NBA", { limit: 6 });
+      return data.map((gif) => ({
+        id: gif.id,
+        name: gif.title
+          .split(" GIF")[0]
+          .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
+        imageUrl: gif.images.fixed_height.url,
+      }));
+    }
+
     fetchNBAGifs().then(setCards);
   }, []);
 
