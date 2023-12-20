@@ -1,19 +1,29 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
-import Placeholder from "./assets/placeholder.png";
+import { GiphyFetch } from "@giphy/js-fetch-api";
+import { useState, useEffect } from "react";
 
 function App() {
-  const cards = [
-    { id: 1, name: "One", imageUrl: Placeholder },
-    { id: 2, name: "Two", imageUrl: Placeholder },
-    { id: 3, name: "Three", imageUrl: Placeholder },
-    { id: 4, name: "Four", imageUrl: Placeholder },
-    { id: 5, name: "Five", imageUrl: Placeholder },
-    { id: 6, name: "Six", imageUrl: Placeholder },
-  ];
+  const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
+  // replace the cards array with function that fetches cards from Giphy API
+  async function fetchNBAGifs() {
+    const { data } = await gf.search("NBA", { limit: 6 });
+    return data.map((gif) => ({
+      id: gif.id,
+      name: gif.title,
+      imageUrl: gif.images.fixed_height.url,
+    }));
+  }
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    fetchNBAGifs().then(setCards);
+  }, []);
 
   const handleCardClick = (card) => {
     console.log(card);
+    console.log(import.meta.env.VITE_GIPHY_API_KEY);
   };
 
   return (
