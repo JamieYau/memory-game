@@ -36,6 +36,11 @@ function App() {
         <p>Match cards to win</p>
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
+      <footer>
+        <p>
+          Powered by <a href="https://giphy.com/">Giphy</a>
+        </p>
+      </footer>
     </div>
   );
 }
