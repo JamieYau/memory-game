@@ -4,13 +4,12 @@ import { GiphyFetch } from "@giphy/js-fetch-api";
 import { useState, useEffect } from "react";
 
 function App() {
-  // replace the cards array with function that fetches cards from Giphy API
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
     async function fetchNBAGifs() {
-      const { data } = await gf.search("NBA", { limit: 6 });
+      const { data } = await gf.search("NBA", { limit: 6, type: "gifs" });
       return data.map((gif) => ({
         id: gif.id,
         name: gif.title
