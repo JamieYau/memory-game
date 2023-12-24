@@ -1,24 +1,12 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
-import { GiphyFetch } from "@giphy/js-fetch-api";
+import { fetchNBAGifs } from "./api";
 import { useState, useEffect } from "react";
 
 function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
-    async function fetchNBAGifs() {
-      const { data } = await gf.search("NBA", { limit: 6, type: "gifs" });
-      return data.map((gif) => ({
-        id: gif.id,
-        name: gif.title
-          .split(" GIF")[0]
-          .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
-        imageUrl: gif.images.fixed_height.url,
-      }));
-    }
-
     fetchNBAGifs().then(setCards);
   }, []);
 
