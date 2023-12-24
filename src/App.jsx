@@ -32,7 +32,7 @@ function App() {
         <h1>Memory Game</h1>
       </header>
       <main>
-        <p>Match cards to win</p>
+        <p>Click each card ONCE to Win</p>
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
       <footer>
