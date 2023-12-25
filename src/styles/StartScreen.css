@@ -10,6 +10,9 @@
 }
 
 .title {
+  img {
+    width: 30%;
+  }
   h1 {
     margin: 0.2em;
   }

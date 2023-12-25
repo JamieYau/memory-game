@@ -5,6 +5,7 @@ import Modal from "./components/Modal";
 import { fetchNBAGifs } from "./services/api";
 import { useState, useEffect } from "react";
 import { shuffle } from "./utils/utils";
+import NbaLogo from "./assets/nba-logo.svg";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -47,6 +48,7 @@ function App() {
   return (
     <div className="app">
       <header>
+        <img src={NbaLogo} alt="NBA Logo" />
         <h1>Memory Game</h1>
       </header>
       <main>

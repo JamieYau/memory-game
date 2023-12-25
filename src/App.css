@@ -8,6 +8,16 @@
   flex-direction: column;
   min-height: 100vh;
   margin: 0 auto;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 120px;
+      margin-right: 1em;
+    }
+  }
 }
 
 main {

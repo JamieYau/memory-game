@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/StartScreen.css";
+import NbaLogo from "../assets/nba-logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleInfo,faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function StartScreen({ onStart }) {
   const [showInstructions, setShowInstructions] = useState(false);
@@ -10,7 +11,7 @@ export default function StartScreen({ onStart }) {
   return (
     <div className="startScreen">
       <div className="title">
-        <h1>NBA</h1>
+        <img src={NbaLogo} alt="NBA Logo" />
         <h1>Memory Game</h1>
       </div>
       <div className="difficulty-container">
