@@ -1,5 +1,6 @@
 import "./App.css";
 import StartScreen from "./components/StartScreen";
+import Scoreboard from "./components/Scoreboard";
 import CardGrid from "./components/CardGrid";
 import Modal from "./components/Modal";
 import { fetchNBAGifs } from "./services/api";
@@ -12,6 +13,7 @@ function App() {
   const [difficulty, setDifficulty] = useState(null);
   const [clickedCards, setClickedCards] = useState(new Set());
   const [gameStatus, setGameStatus] = useState("playing");
+  const [score, setScore] = useState({ current: 0, high: 0 });
 
   useEffect(() => {
     if (difficulty === null) return;
@@ -22,15 +24,28 @@ function App() {
     setDifficulty(selectedDifficulty);
   };
 
+  const handleIncreaseScore = () => {
+    setScore((prevScore) => {
+      const newCurrentScore = prevScore.current + 1;
+      const newHighScore = Math.max(prevScore.high, newCurrentScore);
+      return { current: newCurrentScore, high: newHighScore };
+    });
+  };
+
+  const resetCurrentScore = () => {
+    setScore((prevScore) => ({ ...prevScore, current: 0 }));
+  };
+
   const handleCardClick = (id) => {
     if (clickedCards.has(id)) {
       setGameStatus("lost");
     } else {
       setClickedCards(new Set(clickedCards.add(id)));
       setCards(shuffle(cards));
-      if (clickedCards.size === cards.length) {
-        setGameStatus("won");
-      }
+      handleIncreaseScore();
+    }
+    if (clickedCards.size === cards.length) {
+      setGameStatus("won");
     }
   };
 
@@ -39,6 +54,7 @@ function App() {
     setClickedCards(new Set());
     fetchNBAGifs("NBA", difficulty, "gifs").then(setCards);
     setCards(shuffle(cards));
+    resetCurrentScore();
   };
 
   if (difficulty === null) {
@@ -48,6 +64,7 @@ function App() {
   const backToStartScreen = () => {
     setDifficulty(null);
     setClickedCards(new Set());
+    resetCurrentScore();
   };
 
   return (
@@ -57,7 +74,7 @@ function App() {
         <h1>Memory Game</h1>
       </header>
       <main>
-        <p>Score: {clickedCards.size}</p>
+        <Scoreboard currentScore={score.current} highScore={score.high} />
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
       <footer>
