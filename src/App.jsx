@@ -45,10 +45,15 @@ function App() {
     return <StartScreen onStart={handleStart} />;
   }
 
+  const backToStartScreen = () => {
+    setDifficulty(null);
+    setClickedCards(new Set());
+  };
+
   return (
     <div className="app">
       <header>
-        <img src={NbaLogo} alt="NBA Logo" />
+        <img src={NbaLogo} alt="NBA Logo" onClick={backToStartScreen} />
         <h1>Memory Game</h1>
       </header>
       <main>
