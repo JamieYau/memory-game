@@ -1,5 +1,6 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
+import Modal from "./components/Modal";
 import { fetchNBAGifs } from "./services/api";
 import { useState, useEffect } from "react";
 import { shuffle } from "./utils/utils";
@@ -16,7 +17,6 @@ function App() {
   const handleCardClick = (id) => {
     if (clickedCards.has(id)) {
       setGameStatus("lost");
-      setClickedCards(new Set());
     } else {
       setClickedCards(new Set(clickedCards.add(id)));
       setCards(shuffle(cards));
@@ -24,6 +24,13 @@ function App() {
         setGameStatus("won");
       }
     }
+  };
+
+  const handleRetry = () => {
+    setGameStatus("playing");
+    setClickedCards(new Set());
+    fetchNBAGifs().then(setCards);
+    setCards(shuffle(cards));
   };
 
   return (
@@ -42,6 +49,7 @@ function App() {
           Powered by <a href="https://giphy.com/">Giphy</a>
         </p>
       </footer>
+      <Modal gameStatus={gameStatus} onRetry={handleRetry} />
     </div>
   );
 }
