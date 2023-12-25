@@ -1,7 +1,8 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
-import { fetchNBAGifs } from "./api";
+import { fetchNBAGifs } from "./services/api";
 import { useState, useEffect } from "react";
+import { shuffle } from "./utils/utils";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -18,6 +19,7 @@ function App() {
       setClickedCards(new Set());
     } else {
       setClickedCards(new Set(clickedCards.add(id)));
+      setCards(shuffle(cards));
       if (clickedCards.size === cards.length) {
         setGameStatus("won");
       }

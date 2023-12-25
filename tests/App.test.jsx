@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import App from "../src/App";
-import { fetchNBAGifs } from "../src/api";
+import { fetchNBAGifs } from "../src/services/api";
 
-vi.mock("../src/api");
+vi.mock("../src/services/api");
 
 describe("App", () => {
   beforeEach(() => {
