@@ -10,7 +10,7 @@ export default function CardGrid({ cards, onCardClick }) {
           key={card.id}
           name={card.name}
           imageUrl={card.imageUrl}
-          onClick={() => onCardClick(card)}
+          onClick={() => onCardClick(card.id)}
         />
       ))}
     </div>

@@ -1,29 +1,27 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
-import { GiphyFetch } from "@giphy/js-fetch-api";
+import { fetchNBAGifs } from "./api";
 import { useState, useEffect } from "react";
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [clickedCards, setClickedCards] = useState(new Set());
+  const [gameStatus, setGameStatus] = useState("playing");
 
   useEffect(() => {
-    const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
-    async function fetchNBAGifs() {
-      const { data } = await gf.search("NBA", { limit: 6, type: "gifs" });
-      return data.map((gif) => ({
-        id: gif.id,
-        name: gif.title
-          .split(" GIF")[0]
-          .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase()),
-        imageUrl: gif.images.fixed_height.url,
-      }));
-    }
-
     fetchNBAGifs().then(setCards);
   }, []);
 
-  const handleCardClick = (card) => {
-    console.log(card);
+  const handleCardClick = (id) => {
+    if (clickedCards.has(id)) {
+      setGameStatus("lost");
+      setClickedCards(new Set());
+    } else {
+      setClickedCards(new Set(clickedCards.add(id)));
+      if (clickedCards.size === cards.length) {
+        setGameStatus("won");
+      }
+    }
   };
 
   return (
@@ -32,6 +30,8 @@ function App() {
         <h1>Memory Game</h1>
       </header>
       <main>
+        <p>Score: {clickedCards.size}</p>
+        <p>Status: {gameStatus}</p>
         <p>Click each card ONCE to Win</p>
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
