@@ -40,7 +40,6 @@ function App() {
       </header>
       <main>
         <p>Score: {clickedCards.size}</p>
-        <p>Status: {gameStatus}</p>
         <p>Click each card ONCE to Win</p>
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
