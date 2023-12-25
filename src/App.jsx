@@ -1,4 +1,5 @@
 import "./App.css";
+import StartScreen from "./components/StartScreen";
 import CardGrid from "./components/CardGrid";
 import Modal from "./components/Modal";
 import { fetchNBAGifs } from "./services/api";
@@ -7,12 +8,18 @@ import { shuffle } from "./utils/utils";
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [difficulty, setDifficulty] = useState(null);
   const [clickedCards, setClickedCards] = useState(new Set());
   const [gameStatus, setGameStatus] = useState("playing");
 
   useEffect(() => {
-    fetchNBAGifs().then(setCards);
+    fetchNBAGifs("NBA", 18).then(setCards);
   }, []);
+
+  const handleStart = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+    console.log(selectedDifficulty);
+  };
 
   const handleCardClick = (id) => {
     if (clickedCards.has(id)) {
@@ -32,6 +39,10 @@ function App() {
     fetchNBAGifs().then(setCards);
     setCards(shuffle(cards));
   };
+
+  if (difficulty === null) {
+    return <StartScreen onStart={handleStart} />;
+  }
 
   return (
     <div className="app">
