@@ -5,13 +5,14 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [clickedCards, setClickedCards] = useState(new Set());
 
   useEffect(() => {
     fetchNBAGifs().then(setCards);
   }, []);
 
-  const handleCardClick = (card) => {
-    console.log(card);
+  const handleCardClick = (id) => {
+    setClickedCards(new Set(clickedCards.add(id)));
   };
 
   return (
