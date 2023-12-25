@@ -2,7 +2,21 @@ import { GiphyFetch } from "@giphy/js-fetch-api";
 
 const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
 
-export async function fetchNBAGifs(searchTerm = "NBA", limit = 6, type = "") {
+export async function fetchNBAGifs(searchTerm = "NBA", difficulty = "easy", type = "") {
+  let limit;
+  switch (difficulty) {
+    case "easy":
+      limit = 6;
+      break;
+    case "medium":
+      limit = 12;
+      break;
+    case "hard":
+      limit = 18;
+      break;
+    default:
+      throw new Error(`Unknown difficulty level: ${difficulty}`);
+  }
   try {
     const { data } = await gf.search(searchTerm, { limit, type });
     return data.map((gif) => ({

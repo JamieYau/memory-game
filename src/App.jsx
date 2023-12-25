@@ -13,12 +13,12 @@ function App() {
   const [gameStatus, setGameStatus] = useState("playing");
 
   useEffect(() => {
-    fetchNBAGifs("NBA", 18).then(setCards);
-  }, []);
+    if (difficulty === null) return;
+    fetchNBAGifs("NBA", difficulty, "gifs").then(setCards);
+  }, [difficulty]);
 
   const handleStart = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
-    console.log(selectedDifficulty);
   };
 
   const handleCardClick = (id) => {
