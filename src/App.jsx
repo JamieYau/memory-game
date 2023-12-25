@@ -36,7 +36,7 @@ function App() {
   const handleRetry = () => {
     setGameStatus("playing");
     setClickedCards(new Set());
-    fetchNBAGifs().then(setCards);
+    fetchNBAGifs("NBA", difficulty, "gifs").then(setCards);
     setCards(shuffle(cards));
   };
 
