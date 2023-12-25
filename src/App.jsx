@@ -18,6 +18,9 @@ function App() {
       setClickedCards(new Set());
     } else {
       setClickedCards(new Set(clickedCards.add(id)));
+      if (clickedCards.size === cards.length) {
+        setGameStatus("won");
+      }
     }
   };
 
