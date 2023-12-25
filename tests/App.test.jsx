@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import App from "../src/App";
 import { fetchNBAGifs } from "../src/services/api";
 
@@ -17,12 +17,9 @@ describe("App", () => {
     fetchNBAGifs.mockRestore();
   });
 
-  it("renders Header", () => {
-    render(<App />);
-    expect(screen.getByText("Memory Game")).toBeInTheDocument();
-  });
-  it("renders Footer", () => {
-    render(<App />);
-    expect(screen.getByText("Powered by")).toBeInTheDocument();
+  // renders StartScreen component when difficulty is null
+  it("should render StartScreen component when difficulty is null", () => {
+    const { getByText } = render(<App />);
+    expect(getByText("Memory Game")).toBeInTheDocument();
   });
 });
