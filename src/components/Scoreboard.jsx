@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "../styles/Scoreboard.css";
 
 export default function Scoreboard({ currentScore, highScore }) {
   return (
