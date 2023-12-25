@@ -8,6 +8,22 @@
   flex-direction: column;
   min-height: 100vh;
   margin: 0 auto;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 120px;
+      margin-right: 1em;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
 main {
@@ -15,9 +31,9 @@ main {
   padding: 0 1.5rem;
 }
 
-footer {
+.app footer {
+  background-color: #242424;
   width: 100%;
-  background-color: #f8f9fa;
-  color: black;
   text-align: center;
+  margin-top: 2em;
 }
