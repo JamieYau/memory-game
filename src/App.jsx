@@ -6,13 +6,19 @@ import { useState, useEffect } from "react";
 function App() {
   const [cards, setCards] = useState([]);
   const [clickedCards, setClickedCards] = useState(new Set());
+  const [gameStatus, setGameStatus] = useState("playing");
 
   useEffect(() => {
     fetchNBAGifs().then(setCards);
   }, []);
 
   const handleCardClick = (id) => {
-    setClickedCards(new Set(clickedCards.add(id)));
+    if (clickedCards.has(id)) {
+      setGameStatus("lost");
+      setClickedCards(new Set());
+    } else {
+      setClickedCards(new Set(clickedCards.add(id)));
+    }
   };
 
   return (
@@ -21,6 +27,8 @@ function App() {
         <h1>Memory Game</h1>
       </header>
       <main>
+        <p>Score: {clickedCards.size}</p>
+        <p>Status: {gameStatus}</p>
         <p>Click each card ONCE to Win</p>
         <CardGrid cards={cards} onCardClick={handleCardClick} />
       </main>
